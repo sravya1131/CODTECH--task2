@@ -1,0 +1,56 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class GradeManager {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Double> grades = new ArrayList<>();
+        String choice;
+
+        System.out.println("Welcome to the Grade Manager");
+
+        // Input grades
+        do {
+            System.out.println("Enter a grade (0-100):");
+            double grade = scanner.nextDouble();
+            if (grade >= 0 && grade <= 100) {
+                grades.add(grade);
+            } else {
+                System.out.println("Invalid grade. Please enter a grade between 0 and 100.");
+            }
+
+            System.out.println("Do you want to enter another grade? (yes/no):");
+            choice = scanner.next();
+
+        } while (choice.equalsIgnoreCase("yes"));
+
+        // Calculate average grade
+        double total = 0;
+        for (double grade : grades) {
+            total += grade;
+        }
+        double average = total / grades.size();
+
+        // Determine letter grade
+        String letterGrade;
+        if (average >= 90) {
+            letterGrade = "A";
+        } else if (average >= 80) {
+            letterGrade = "B";
+        } else if (average >= 70) {
+            letterGrade = "C";
+        } else if (average >= 60) {
+            letterGrade = "D";
+        } else {
+            letterGrade = "F";
+        }
+
+        // Display results
+        System.out.println("Total Grades Entered: " + grades.size());
+        System.out.println("Average Grade: " + average);
+        System.out.println("Letter Grade: " + letterGrade);
+
+        scanner.close();
+    }
+}
